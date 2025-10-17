@@ -1,0 +1,689 @@
+:root {
+    --bg-dark: #121212;
+    --bg-medium: #1e1e1e;
+    --bg-light: #2b2b2b;
+    --text-color: #eee;
+    --accent-color: #4caf50;
+    --accent-hover: #45a049;
+    --border-color: #444;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-color-rgb: 76, 175, 80;
+    --warning-color: #b40303;
+    --hero-text-color: #eee;
+
+    /* Nové proměnné pro dynamické barvení ikon a textu tlačítek */
+    --current-accent-color: var(--accent-color); /* Zelená pro tmavý režim */
+    --current-button-text: white; /* Bílá pro tmavý režim */
+}
+
+/* Light theme variables */
+body.light-theme {
+    --bg-dark: #f0f2f5;
+    --bg-medium: #ffffff;
+    --bg-light: #e0e2e5;
+    --text-color: #888888;
+    --accent-color: #4caf50; 
+    --accent-hover: #45a049;
+    --border-color: #ccc;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-color-rgb: 33, 150, 243;
+    --warning-color: #ff000dce;
+    --hero-text-color: #eee;
+
+    /* Aktualizace proměnných pro světlý režim */
+    --current-accent-color: var(--accent-color); 
+    --current-button-text: white; /* Bílá pro světlý režim, protože tlačítka jsou modrá */
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+  }
+  
+::-webkit-scrollbar-track {
+    background: var(--bg-medium);
+  }
+  
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+  }
+
+html, body {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.site-header {
+    width: 100%;
+    background-color: var(--bg-medium);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 0.6em;
+    color: var(--text-color);
+    display: flex;
+    align-items: center; 
+    gap: 0.5rem; 
+}
+
+.hero {
+        background-image: url("img/trees-975091_1280.jpg");
+        background-size: cover;        
+        background-position: center; 
+        background-repeat: no-repeat;  
+        height: 80vh;  
+        width:100%;               
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;                  
+        text-align: center;
+        padding: 2rem;
+    }
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: var(--accent-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--hero-text-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Main Layout --- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.grid-layout {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    padding-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+section {
+    background: var(--bg-medium);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h2 {
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* --- Common Input/Button Styles --- */
+input[type="text"],
+textarea,
+select {
+    width: calc(100% - 1.6rem); /* Account for padding */
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background: var(--bg-light);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.3);
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+
+.pulse:hover {
+    animation-play-state: paused;
+}
+
+/* For dark/light theme toggle icon */
+#theme-toggle {
+    background: var(--accent-color); /* Zelené pozadí pro toggle */
+    color: white; /* Bílá ikona */
+    border: 1px solid var(--accent-color);
+    margin-right: 1.25rem;
+}
+
+#theme-toggle:hover {
+    background: var(--accent-hover); /* Tmavší zelená při najetí */
+    color: white; /* Bílá při najetí */
+}
+
+
+/* --- To-Do Section --- */
+.todo-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-input-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.task-input-container input {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.task {
+    background: var(--bg-light);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.task.completed {
+    opacity: 0.7;
+    background-color: var(--bg-medium); /* Slightly darker for completed */
+    
+}
+
+.task.completed .task-text { /* Nové pravidlo pro text u splněných úkolů */
+    text-decoration: line-through; /* Překřížit jen text */
+}
+
+.task.completed .task-actions button { /* Nové pravidlo pro ikonky u splněných úkolů */
+    text-decoration: none; /* Odstranit překřížení u tlačítek */
+    color: var(--bg-dark);
+}
+
+.task span {
+    flex-grow: 1;
+    margin-right: 1rem;
+    word-break: break-word; /* Prevents long words from overflowing */
+}
+
+.task-actions { 
+    display: flex; 
+    gap: 0.5rem; 
+    align-items: center; 
+    flex-shrink: 0; 
+}
+
+/* Úprava barev a vzhledu pro akční tlačítka u úkolů (✔️, 🖋️, 🗑️) */
+.task .task-actions button {
+    background: var(--accent-color); /* Zelené pozadí */
+    color: white; /* Bílá ikonka */
+    width: 30px; 
+    height: 30px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem; /* Velikost písma pro ikony */
+    margin-left: 0; /* Mezera mezi tlačítky */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Jemný stín */
+    padding: 0; 
+}
+
+.task .task-actions button:hover {
+    background-color: var(--accent-hover); /* Tmavší zelená při najetí */
+    transform: translateY(-1px) scale(1.05); /* Jemné zvětšení */
+    color: white;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.task .task-actions button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.filters button {
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+}
+
+.filters button:hover {
+    background-color: var(--bg-medium);
+}
+
+.filters button.active {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+/* Styly pro tmavý režim */
+.swal2-popup.swal2-dark-mode-popup {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.swal2-modal {
+    background-color: var(--bg-light);
+    color: var(--text-color);
+}
+
+.swal2-confirm {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.swal2-confirm:hover {
+    background-color: var(--accent-hover);
+}
+
+.swal2-dark-mode-popup .swal2-icon.swal2-info {
+    border-color: #4caf50;
+    color: #4caf49;
+}
+
+/* Styly pro světlý režim */
+body.light-theme .swal2-popup.swal2-dark-mode-popup {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light); 
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px var(--shadow-color); 
+}
+
+.swal2-icon.swal2-warning {
+    color: var(--warning-color); 
+    border-color: var(--warning-color);
+}
+
+/* --- Coach Section --- */
+.coach-section button {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#coach-panel {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px var(--shadow-color);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+#coach-panel.active {
+    display: flex;
+}
+
+#selected-task {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#coach-questions p {
+    margin: 0.5rem 0;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+#coach-response-area label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+#coach-response-area textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+#coach-response-area select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: var(--bg-light);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* --- Pomodoro Section --- */
+.pomodoro-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pomodoro-circle-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Aby se texty a ikona srovnaly pod sebe */
+    justify-content: center; /* Vertikální centrování */
+    align-items: center; /* Horizontální centrování */
+}
+
+.pomodoro-progress-ring {
+    transform: rotate(90deg); /* Otočí celý SVG o 180 stupňů pro začátek nahoře a směr proti hodinám */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pomodoro-progress-ring-bg {
+    stroke: var(--border-color); /* Background pro kruh */
+}
+
+.pomodoro-progress-ring-fg {
+    transition: stroke-dashoffset 0.5s linear; /* Plynulá animace progressu */
+    stroke: var(--accent-color); /* Barva pro progress */
+    transform: scaleX(-1); /* Zrcadlí horizontálně, aby ubývalo proti směru */
+    transform-origin: center; /* Důležité pro správné zrcadlení */
+}
+
+#pomodoro-timer-display { /* Dříve .pomodoro-timer-text, nyní ID */
+    position: relative; /* Zajistí, že span elementy uvnitř budou reagovat na flexbox */
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    line-height: 1; /* Odstraní zbytečný prostor nad/pod textem */
+    display: flex; /* Použijeme flexbox pro centrování obsahu */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Nad SVG */
+    /* Není potřeba absolute positioning ani transform, flexbox to zařídí */
+}
+
+#pomodoro-mode.pomodoro-mode-text { /* Zacílíme na span uvnitř displaye */
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-top: 5px; /* Mezera mezi časem a režimem */
+}
+
+#pomodoro-icon.pomodoro-mode-icon { /* Zacílíme na span uvnitř displaye */
+    font-size: 1.5rem;
+    margin-top: 8px; /* Mezera mezi režimem a ikonkou */
+    color: white; /* Bílá ikona */
+    background-color: var(--accent-color); /* Zelené pozadí */
+    border-radius: 50%;
+    width: 2.2em; /* Relativní velikost, aby ikona byla uvnitř kruhu */
+    height: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pomodoro-cycle-indicators {
+    display: flex;
+    gap: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cycle-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.cycle-dot.active {
+    background-color: var(--accent-color);
+}
+
+.timer-controls {
+    display: flex; /* Udělá z tohoto kontejneru flexbox */
+    justify-content: center; /* Vycentruje tlačítka horizontálně */
+    align-items: center; /* Vycentruje tlačítka vertikálně (pokud mají různou výšku) */
+    gap: 0.5rem; /* Mezera mezi tlačítky (např. Start a Reset) */
+    margin-top: 1.5rem; /* Dodatečná mezera od Pomodoro kruhu */
+}
+
+.timer-controls button {
+    margin: 0 0.5rem;
+    min-width: 130px; 
+    height: 55px;
+    background-color: var(--current-accent-color);
+    color: var(--current-button-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+
+.timer-controls .alt-button {
+    background-color: var(--current-accent-color);
+    color: var(--current-button-text);
+    border: 1px solid var(--border-color);
+}
+
+/* Styling pro Unicode ikony v Pomodoro tlačítku */
+.pomodoro-control-button .icon {
+    font-size: 1.5rem; /* Větší pro viditelnost */
+    color: var(--current-button-text); /* Ikona bude bílá (podle current-button-text) */
+    line-height: 1; /* Aby se ikona dobře zarovnala */
+    transition: color 0.3s ease; /* Plynulá změna barvy */
+}
+
+/* --- Music Section --- */
+.music-player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#youtube-player {
+    width: 100%;
+    max-width: 400px; /* Limit player width for better aesthetics */
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    border-radius: 8px;
+    overflow: hidden; /* Hide any overflow from border-radius */
+}
+
+.music-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+    justify-content: center;
+}
+
+.music-controls select {
+    margin-bottom: 0;
+    flex-grow: 1;
+    min-width: 150px;
+}
+
+/* Hudební tlačítka - styl pro celé tlačítko */
+.music-controls button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem; /* Zmenšíme základní font-size, ikony budou větší */
+    min-width: 80px;
+    background-color: var(--current-accent-color); /* Dynamická akcentní barva */
+    color: var(--current-button-text); /* Dynamická barva textu/ikon */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Mezera mezi ikonou a textem */
+}
+
+/* Pseudo-elementy pro ikony hudebních tlačítek */
+#play-music-button::before {
+    content: '▶'; /* Unicode symbol pro play */
+    font-size: 1.2rem; /* Velikost ikony */
+    color: var(--current-button-text); /* Bílá ikona */
+}
+
+#pause-music-button::before {
+    content: '⏸'; /* Unicode symbol pro pause */
+    font-size: 1.2rem; /* Velikost ikony */
+    color: var(--current-button-text); /* Bílá ikona */
+}
+
+/* Důležité: Upravíme styly pro light-theme, pokud by ikony v light mode měly být jiné barvy na bílém pozadí */
+/* Momentálně jsou ikony uvnitř tlačítek, které mění barvu pozadí, takže current-button-text by měl stačit. */
+/* Pokud bys měla ikony mimo tlačítka, potřebovala bys podobné pravidlo pro light-theme */
+/* Tyto pravidla jsou již zbytečná, protože current-button-text se postará o barvu */
+/* .light-theme #play-music-button::before, */
+/* .light-theme #pause-music-button::before { */
+/* color: var(--current-button-text); */
+/* } */
+
+/* --- Nová sekce: Dýchací Kouč --- */
+.breathing-coach-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* --- Footer --- */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    background-color: var(--bg-medium);
+    color: var(--text-color);
+    box-shadow: 0 -2px 4px var(--shadow-color);
+    font-size: 0.9rem;
+}
+
+/* --- Utility/Animations --- */
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.5s ease-out forwards;
+}
+
+@keyframes slideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100px); /* Move out of view */
+        height: 0; /* Collapse height to prevent empty space */
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Kouč</title>
+    <link rel="icon" href="img/calendar (2).png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo"><img src="img/calendar (3).png" alt="calendar"> To-Do Kouč</div>
+        <button id="theme-toggle">🌓 Režim</button>
+    </header>
+
+    <section class="hero">
+        <h1>Zvládni své cíle</h1>
+        <p>S pomocí zapisování úkolů, koučinku a Pomodoro techniky.</p>
+        <button id="scroll-to-tasks" class="animate__animated animate__pulse animate__infinite pulse">Začít</button>
+    </section>
+
+    <main class="grid-layout container">
+        <section class="todo-section">
+            <h2>Úkoly</h2>
+            <div class="task-input-container">
+                <input type="text" id="new-task-input" placeholder="Přidat nový úkol..." />
+                <button id="add-task-button">Přidat</button>
+            </div>
+            <ul id="task-list"></ul>
+            <div class="filters">
+                <button data-filter="all" class="active">Vše</button>
+                <button data-filter="active">Aktivní</button>
+                <button data-filter="completed">Splněné</button>
+            </div>
+        </section>
+
+        <section class="coach-section">
+            <h2>Kouč</h2>
+            <button id="pick-random-task">Náhodně vybrat úkol</button>
+            <div id="coach-panel">
+                <p id="selected-task"></p>
+                <div id="coach-questions">
+                </div>
+                <div id="coach-response-area">
+                </div>
+                <button id="next-coach-question" style="display:none;">Další otázka</button>
+            </div>
+        </section>
+
+        <section class="pomodoro-section">
+            <h2>Pomodoro</h2>
+            <div class="pomodoro-circle-container">
+                <svg class="pomodoro-progress-ring" width="200" height="200">
+                    <circle class="pomodoro-progress-ring-bg" stroke="#333" stroke-width="8" fill="transparent" r="90" cx="100" cy="100" />
+                    <circle class="pomodoro-progress-ring-fg" stroke="var(--accent-color)" stroke-width="8" fill="transparent" r="90" cx="100" cy="100" style="stroke-dasharray: 565.48; stroke-dashoffset: 0;"></circle>
+                </svg>
+                <div id="pomodoro-timer-display" class="pomodoro-timer-text">
+                    <span id="actual-timer-text">25:00</span>
+                    <span id="pomodoro-mode" class="pomodoro-mode-text">Cyklus</span>
+                    <span id="pomodoro-icon" class="pomodoro-mode-icon animate__animated animate__infinite">🖥️</span>
+                </div>
+            </div>
+
+            <div class="pomodoro-cycle-indicators" id="pomodoro-cycle-indicators">
+                <span class="cycle-dot active"></span>
+                <span class="cycle-dot"></span>
+                <span class="cycle-dot"></span>
+                <span class="cycle-dot"></span>
+            </div>
+
+            <div class="timer-controls">
+                <button id="pomodoro-main-button" class="pomodoro-control-button">
+                    <span class="icon">▶</span><span class="text"></span>
+                </button>
+                <button id="reset-timer" class="pomodoro-control-button alt-button"><span class="icon" style="font-size: 1.8rem">⟳</span><span class="text"> Restart</span></button>
+            </div>
+        </section>
+
+        <section class="music-section">
+            <h2>Hudba</h2>
+            <div class="music-player-container">
+                <div id="youtube-player"></div>
+                <div class="music-controls">
+                    <select id="playlist-selector">
+                        <option value="work">Soustředění</option>
+                        <option value="relax">Relax</option>
+                    </select>
+                    <button id="play-music-button"></button>
+                    <button id="pause-music-button"></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="meditation-section">
+            <h2>Meditace</h2>
+            <div class="meditation-container">
+            <script
+                src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                type="module"
+            ></script>
+
+            <dotlottie-player
+                src="https://lottie.host/28ce0e79-ab17-4e15-96b3-3013d0630645/xKFvWrEXFX.lottie"
+                background="transparent"
+                speed="0.5"
+                style="width: 300px; height: 300px"
+                shadow="#4caf50"
+                loop
+                autoplay
+            
+                >
+            </dotlottie-player>
+                </div>
+            </div>
+        </section>
+        <section class="breathing-coach-section">
+            <h2>Dýchací kouč</h2>
+            <div class="breathing-visual-container">
+                <div id="breathing-circle" class="breathing-circle">
+                    <div id="breathing-instruction" class="breathing-instruction">
+                    <script
+                        src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                        type="module"
+                    ></script>
+
+                <dotlottie-player
+                    src="https://lottie.host/736dd58b-f992-4477-8437-3e456311412b/geSB2L9XUt.lottie"
+                    background="transparent"
+                    speed="1"
+                    style="width: 300px; height: 300px"
+                    loop
+                    autoplay
+                ></dotlottie-player>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 ToDo Kouč • Vytvořeno s 💚</p>
+    </footer>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script defer src="app.js"></script>
+</body>
+</html>
